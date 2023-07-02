@@ -17,16 +17,26 @@
         </div>
       </section>
       <section class="planto-iot-login-input-fields">
-        <form class="planto-iot-login-input-fields-form">
+        <form class="planto-iot-login-input-fields-form" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
           <mat-form-field class="fullwidth">
-            <mat-label>Usuário</mat-label>
-            <input matInput placeholder="Nome do usuário">
+            <mat-label>E-mail</mat-label>
+            <mat-error *ngIf="formLogin.controls.email.invalid">Digite um e-mail válido</mat-error>
+            <input formControlName="email" matInput placeholder="E-mail do administrador">
           </mat-form-field>
           <mat-form-field class="fullwidth">
             <mat-label>Senha</mat-label>
-            <input matInput placeholder="Senha do usuário">
+            <mat-error *ngIf="formLogin.controls.senha.invalid">Digite uma senha válida</mat-error>
+            <input formControlName="senha" matInput placeholder="Senha do usuário" type="password">
           </mat-form-field>
-          <button mat-raised-button color="primary" class="fullwidth" type="button">Entrar</button>
+          <ng-container *ngIf="_isProcessing else canProcess">
+            <button mat-raised-button color="primary" class="fullwidth" type="button" disabled>
+              <mat-spinner diameter="20" style="margin-right: 0.5rem"></mat-spinner>
+              Processando...
+            </button>
+          </ng-container>
+          <ng-template #canProcess>
+            <button mat-raised-button color="primary" class="fullwidth" type="submit">Entrar</button>
+          </ng-template>
         </form>
       </section>
       <section class="planto-iot-login-social-providers">

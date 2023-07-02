@@ -1,1 +1,31 @@
-<p>dashboard-main works!</p>
+<main>
+  <mat-toolbar style="display: flex; gap: 1rem; align-content: center; width: 100%">
+    <div class="planto-iot-text-title"
+         style="display: flex; flex-direction: row; justify-content: center; font-family: fredoka, sans-serif">
+      <h1>Plant</h1>
+      <mat-icon style="font-size: 2rem;">eco</mat-icon>
+      <div style="width: 1rem"></div>
+      <h1>I</h1>
+      <mat-icon style="font-size: 2rem; padding: 0 0.6rem 0 0.3rem;">settings</mat-icon>
+      <h1>T</h1>
+    </div>
+    <div class="spacer" style="border-right: 0.2rem solid grey"></div>
+    <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Console administrativo</h1>
+    <button mat-button style="margin-left: auto; display: flex; justify-content: center; align-items: center">
+      <div style="background-color: grey; width: 3rem !important; height: 3rem !important; border-radius: 50%; display: flex; justify-content: center; align-self: center">
+        <h1 style="position: relative; top: 0.4rem">P</h1>
+      </div>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</main>
+<footer>
+
+</footer>
