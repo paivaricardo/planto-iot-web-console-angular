@@ -1,5 +1,5 @@
 <main>
-  <mat-toolbar style="display: flex; gap: 1rem; align-content: center; width: 100%">
+  <mat-toolbar style="display: flex; gap: 1rem; align-content: center; width: 100%; position: relative; z-index: 8" class="mat-elevation-z8">
     <div class="planto-iot-text-title"
          style="display: flex; flex-direction: row; justify-content: center; font-family: fredoka, sans-serif">
       <h1>Plant</h1>
@@ -11,15 +11,48 @@
     </div>
     <div class="spacer" style="border-right: 0.2rem solid grey"></div>
     <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Console administrativo</h1>
-    <button mat-button style="margin-left: auto; display: flex; justify-content: center; align-items: center">
+    <button mat-button style="margin-left: auto; display: flex; justify-content: center; align-items: center" [matMenuTriggerFor]="menu">
       <div style="background-color: grey; width: 3rem !important; height: 3rem !important; border-radius: 50%; display: flex; justify-content: center; align-self: center">
         <h1 style="position: relative; top: 0.4rem">P</h1>
       </div>
     </button>
+    <mat-menu #menu="matMenu">
+      <div style="margin: 0.6rem">
+        <h5 style="font-size: 1rem; color: white">{{ this.loginService.loginCredentials?.username! }}</h5>
+        <hr style="margin-top: -0.5rem">
+        <button mat-menu-item (click)="this.logout()">
+          <mat-icon color="disable">logout</mat-icon>
+          Sair
+        </button>
+      </div>
+    </mat-menu>
   </mat-toolbar>
-  <mat-sidenav-container>
-    <mat-sidenav>
-
+  <mat-sidenav-container style="height: 100vh;">
+    <mat-sidenav #sidenav [opened]=true mode="side" style="width: 20rem;" class="mat-elevation-z4 planto-iot-sidenav">
+      <mat-card class="mat-elevation-z4" style="width: 20rem; height: 80vh;">
+        <mat-nav-list>
+          <mat-list-item routerLink="/inicio" routerLinkActive="active">
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <h4 mat-line>Início</h4>
+          </mat-list-item>
+          <mat-list-item routerLink="/sensores" routerLinkActive="active">
+            <mat-icon mat-list-icon>sensors</mat-icon>
+            <h4 mat-line>Sensores</h4>
+          </mat-list-item>
+          <mat-list-item routerLink="/usuarios" routerLinkActive="active">
+            <mat-icon mat-list-icon>people</mat-icon>
+            <h4 mat-line>Usuários</h4>
+          </mat-list-item>
+          <mat-list-item routerLink="/areas" routerLinkActive="active">
+            <mat-icon mat-list-icon>area_chart</mat-icon>
+            <h4 mat-line>Áreas</h4>
+          </mat-list-item>
+          <mat-list-item routerLink="/culturas" routerLinkActive="active">
+            <mat-icon mat-list-icon>eco</mat-icon>
+            <h4 mat-line>Culturas</h4>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

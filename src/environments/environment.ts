@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  backendUrl: 'http://18.214.223.254:8000',
+  adminUsername: 'planto.iot.helpdesk@gmail.com',
+  adminPassword: 'PAGEANT9listen.fuel',
 };
 
 /*

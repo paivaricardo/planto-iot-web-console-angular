@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-dashboard-main',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public loginService: LoginService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  async logout() {
+    await this.loginService.logout();
   }
 
 }
