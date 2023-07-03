@@ -15,7 +15,7 @@ export class AreasConsultaComponent implements OnInit, AfterViewInit {
 
   listAreas: Area[] = [];
 
-  displayedColumns = ['nome_area'];
+  displayedColumns = ['nome_area', 'acoes'];
   areasDataSource = new MatTableDataSource<Area>();
 
   // Paginador do Material Table

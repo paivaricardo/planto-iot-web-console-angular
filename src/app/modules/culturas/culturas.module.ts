@@ -6,9 +6,21 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import { CulturasCadastroComponent } from './culturas-cadastro/culturas-cadastro.component';
+import { CulturasEdicaoComponent } from './culturas-edicao/culturas-edicao.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
-  declarations: [CulturasConsultaComponent],
+  declarations: [
+    CulturasConsultaComponent,
+    CulturasCadastroComponent,
+    CulturasEdicaoComponent,
+  ],
   imports: [
     CommonModule,
     CulturasRoutingModule,
@@ -16,6 +28,13 @@ import {MatTableModule} from "@angular/material/table";
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class CulturasModule {}

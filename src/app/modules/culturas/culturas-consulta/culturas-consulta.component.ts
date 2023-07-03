@@ -16,7 +16,7 @@ export class CulturasConsultaComponent implements OnInit, AfterViewInit {
 
   listCulturas: Cultura[] = [];
 
-  displayedColumns = ['nome_cultura'];
+  displayedColumns = ['nome_cultura', 'acoes'];
   culturasDataSource = new MatTableDataSource<Cultura>();
 
   // Paginador do Material Table

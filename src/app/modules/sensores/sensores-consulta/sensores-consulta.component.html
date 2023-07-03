@@ -1,6 +1,12 @@
 <main style="padding: 2rem">
   <div class="main-content">
-    <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Consultar sensores</h1>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+      <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Consultar sensores</h1>
+      <button mat-raised-button color="primary" routerLink="pre-cadastro">
+        <mat-icon>add</mat-icon>
+        <span>Pré-cadastro</span>
+      </button>
+    </div>
     <ng-container *ngIf="loading else loaded">
       <mat-spinner></mat-spinner>
     </ng-container>
@@ -27,7 +33,7 @@
             Nome
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.nome_sensor }}
+            {{ sensorAtuador.nome_sensor ?? 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="latitude">
@@ -35,7 +41,7 @@
             Latitude
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.latitude }}
+            {{ sensorAtuador.latitude ?? 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="longitude">
@@ -43,7 +49,7 @@
             Longitude
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.longitude }}
+            {{ sensorAtuador.longitude ?? 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="data_cadastro_sensor">
@@ -51,7 +57,7 @@
             Data do cadastro
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.data_cadastro_sensor }}
+            {{ sensorAtuador.data_cadastro_sensor ?? 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="data_precadastro_sensor">
@@ -68,7 +74,7 @@
             Observações
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.observacoes }}
+            {{ sensorAtuador.observacoes ?? 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="usuario_cadastrante">
@@ -76,7 +82,7 @@
             Usuário cadastrante
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.usuario_cadastrante.nome_usuario }}
+            {{ sensorAtuador.usuario_cadastrante ? sensorAtuador.usuario_cadastrante.nome_usuario : 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="area">
@@ -84,7 +90,7 @@
             Área
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.area.nome_area }}
+            {{ sensorAtuador.area ? sensorAtuador.area.nome_area : 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="cultura">
@@ -92,7 +98,7 @@
             Cultura
           </th>
           <td mat-cell *matCellDef="let sensorAtuador">
-            {{ sensorAtuador.cultura.nome_cultura }}
+            {{ sensorAtuador.cultura ? sensorAtuador.cultura.nome_cultura : 'Não informado' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="tipo_sensor">

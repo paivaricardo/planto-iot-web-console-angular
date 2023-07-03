@@ -1,6 +1,12 @@
 <main style="padding: 2rem">
   <div class="main-content">
-    <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Consultar áreas</h1>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+      <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Consultar áreas</h1>
+      <button mat-raised-button color="primary" routerLink="cadastro">
+        <mat-icon style="margin-right: 1rem">add</mat-icon>
+        <span>Cadastrar</span>
+      </button>
+    </div>
     <ng-container *ngIf="loading else loaded">
       <mat-spinner></mat-spinner>
     </ng-container>
@@ -20,6 +26,22 @@
           </th>
           <td mat-cell *matCellDef="let area">
             {{ area.nome_area }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>
+            Ações
+          </th>
+          <td mat-cell *matCellDef="let area">
+            <button mat-icon-button color="disabled" [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="['edicao', area.id_area]">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+            </mat-menu>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

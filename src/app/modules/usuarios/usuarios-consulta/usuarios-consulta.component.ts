@@ -1,22 +1,26 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Cultura} from "../../../interfaces/cultura";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {BackendService} from "../../../services/backend.service";
-import {Usuario} from "../../../interfaces/usuario";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { BackendService } from '../../../services/backend.service';
+import { Usuario } from '../../../interfaces/usuario';
 
 @Component({
   selector: 'app-usuarios-consulta',
   templateUrl: './usuarios-consulta.component.html',
-  styleUrls: ['./usuarios-consulta.component.scss']
+  styleUrls: ['./usuarios-consulta.component.scss'],
 })
 export class UsuariosConsultaComponent implements OnInit, AfterViewInit {
   loading: boolean = true;
 
   listUsuarios: Usuario[] = [];
 
-  displayedColumns = ['nome_usuario', 'email_usuario', 'data_cadastro', 'id_perfil_usuario'];
+  displayedColumns = [
+    'nome_usuario',
+    'email_usuario',
+    'data_cadastro',
+    'id_perfil_usuario',
+  ];
   usuariosDataSource = new MatTableDataSource<Usuario>();
 
   // Paginador do Material Table
