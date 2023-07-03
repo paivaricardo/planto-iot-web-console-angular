@@ -1,1 +1,11 @@
-<p>usuarios-consulta works!</p>
+<main style="padding: 2rem">
+  <div class="main-content">
+    <h1 style="font-family: fredoka, sans-serif; font-size: 2rem">Consultar usuários</h1>
+    <ng-container *ngIf="loading else loaded">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+    <ng-template #loaded>
+      <h2>Sensores aparecerão aqui</h2>
+    </ng-template>
+  </div>
+</main>
