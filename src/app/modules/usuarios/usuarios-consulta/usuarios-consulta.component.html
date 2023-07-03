@@ -5,7 +5,56 @@
       <mat-spinner></mat-spinner>
     </ng-container>
     <ng-template #loaded>
-      <h2>Sensores aparecerão aqui</h2>
+      <table
+        mat-table
+        [dataSource]="this.usuariosDataSource"
+        matSort
+        class="mat-elevation-z0 fullwidth"
+        style="height: 80%;"
+        aria-description="Tabela de consulta de usuários"
+        aria-describedby="Tabela de consulta de usuários"
+      >
+        <ng-container matColumnDef="nome_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por nome do usuário">
+            Nome do usuário
+          </th>
+          <td mat-cell *matCellDef="let usuario">
+            {{ usuario.nome_usuario }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="email_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por e-mail do usuário">
+            E-mail do usuário
+          </th>
+          <td mat-cell *matCellDef="let usuario">
+            {{ usuario.email_usuario }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="data_cadastro">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por data de cadastro">
+            Data de cadastro
+          </th>
+          <td mat-cell *matCellDef="let usuario">
+            {{ usuario.data_cadastro }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="id_perfil_usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por id do perfil">
+            ID do perfil
+          </th>
+          <td mat-cell *matCellDef="let usuario">
+            {{ usuario.id_perfil }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        class="mat-elevation-z4"
+        showFirstLastButtons
+        [pageSizeOptions]="pageSizeOptions"
+        aria-label="Paginação da tabela de consulta de culturas"
+      ></mat-paginator>
     </ng-template>
   </div>
 </main>
