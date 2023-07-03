@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import { SensorAtuador } from '../../../interfaces/sensor-atuador';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +11,7 @@ import { SensorAtuadorQueryModel } from '../../../interfaces/sensor-atuador-quer
   templateUrl: './sensores-consulta.component.html',
   styleUrls: ['./sensores-consulta.component.scss'],
 })
-export class SensoresConsultaComponent implements OnInit, AfterViewInit {
+export class SensoresConsultaComponent implements OnInit {
   loading: boolean = true;
 
   listSensores: SensorAtuadorQueryModel[] = [];
@@ -32,13 +32,30 @@ export class SensoresConsultaComponent implements OnInit, AfterViewInit {
   sensoresDataSource = new MatTableDataSource<SensorAtuadorQueryModel>();
 
   // Paginador do Material Table
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  paginator?: MatPaginator;
   pageSizeOptions: number[] = [5, 10, 25];
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    if (mp) {
+      this.paginator = mp;
+      this.sensoresDataSource.paginator = this.paginator;
+      this.changeDetectorRef.detectChanges();
+    }
+  }
 
+  sort?: MatSort;
   // Ordenador do Material Table
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    if (ms) {
+      this.sort = ms;
+      this.sensoresDataSource.sort = this.sort;
+      this.changeDetectorRef.detectChanges();
+    }
+  }
 
-  constructor(private backendService: BackendService) {}
+  constructor(private backendService: BackendService,
+              private changeDetectorRef: ChangeDetectorRef
+
+  ) {}
 
   ngOnInit(): void {
     this.backendService
@@ -48,12 +65,10 @@ export class SensoresConsultaComponent implements OnInit, AfterViewInit {
 
         this.sensoresDataSource.data = this.listSensores;
 
+        this.sensoresDataSource.paginator = this.paginator!;
+        this.sensoresDataSource.sort = this.sort!;
+
         this.loading = false;
       });
-  }
-
-  ngAfterViewInit() {
-    this.sensoresDataSource.paginator = this.paginator;
-    this.sensoresDataSource.sort = this.sort;
   }
 }
