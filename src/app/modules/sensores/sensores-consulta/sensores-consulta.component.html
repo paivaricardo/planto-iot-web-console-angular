@@ -11,6 +11,10 @@
       <mat-spinner></mat-spinner>
     </ng-container>
     <ng-template #loaded>
+      <mat-form-field appearance="standard">
+        <mat-label>Filtrar sensores</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Parâmetro de busca" #input>
+      </mat-form-field>
       <table
         mat-table
         [dataSource]="this.sensoresDataSource"

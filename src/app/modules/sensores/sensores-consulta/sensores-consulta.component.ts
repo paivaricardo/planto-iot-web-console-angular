@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import { SensorAtuador } from '../../../interfaces/sensor-atuador';
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,6 +34,7 @@ export class SensoresConsultaComponent implements OnInit {
   // Paginador do Material Table
   paginator?: MatPaginator;
   pageSizeOptions: number[] = [5, 10, 25];
+
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     if (mp) {
       this.paginator = mp;
@@ -43,6 +44,7 @@ export class SensoresConsultaComponent implements OnInit {
   }
 
   sort?: MatSort;
+
   // Ordenador do Material Table
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     if (ms) {
@@ -52,9 +54,9 @@ export class SensoresConsultaComponent implements OnInit {
     }
   }
 
-  constructor(private backendService: BackendService,
-              private changeDetectorRef: ChangeDetectorRef
-
+  constructor(
+    private backendService: BackendService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -70,5 +72,10 @@ export class SensoresConsultaComponent implements OnInit {
 
         this.loading = false;
       });
+  }
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.sensoresDataSource.filter = filterValue.trim().toLowerCase();
   }
 }
